@@ -1,9 +1,13 @@
 package com.company.entity;
 
 import com.company.enums.Gender;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+@Data
+@NoArgsConstructor
 public class User extends BaseEntity {
 
     private String firstName;

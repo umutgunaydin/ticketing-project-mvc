@@ -5,10 +5,10 @@ import com.company.service.RoleService;
 
 import java.util.List;
 
-public class RoleServiceImpl extends AbstractMapService<RoleDTO,Long> implements RoleService {
+public class RoleServiceImpl extends AbstractMapService<RoleDTO, Long> implements RoleService {
     @Override
     public RoleDTO save(RoleDTO role) {
-        return super.save(role.getId(),role);
+        return super.save(role.getId(), role);
     }
 
     @Override
