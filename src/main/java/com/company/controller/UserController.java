@@ -49,7 +49,7 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public String updateUser(@ModelAttribute("user") UserDTO user){
+    public String updateUser(@ModelAttribute("user") UserDTO user){ // without using @ModelAttribute it is ok
 
         userService.update(user);
 
@@ -60,10 +60,8 @@ public class UserController {
     public String deleteUser(@PathVariable("username") String username, Model model){
 
         userService.deleteById(username);
-        model.addAttribute("roles",roleService.findAll());
-        model.addAttribute("users",userService.findAll());
 
-        return "/user/create";
+        return "redirect:/user/create";
     }
 
 
