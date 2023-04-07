@@ -129,7 +129,7 @@
                                             <tr>
                                                 <td></td>
                                                 <td></td>
-                                                <td></td>
+                                                <td th:text="${#temporals.format(project.startDate, 'MM.dd.yyyy') + ' ' + #temporals.format(project.endDate,'MM.dd.yyyy')}"></td>
                                                 <td></td>
                                                 <td></td>
                                                 <td>
