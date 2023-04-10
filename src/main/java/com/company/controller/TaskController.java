@@ -1,6 +1,7 @@
 package com.company.controller;
 
 import com.company.dto.TaskDTO;
+import com.company.enums.Status;
 import com.company.service.ProjectService;
 import com.company.service.TaskService;
 import com.company.service.UserService;
@@ -72,6 +73,15 @@ public class TaskController {
         return "redirect:/task/create";
     }
 
+
+    @GetMapping("/employee/pending-tasks")
+    public String employeePendingTasks(Model model){
+
+        model.addAttribute("tasks", taskService.findAllTasksByStatusIsNot(Status.COMPLETE));
+
+
+        return "/task/pending-tasks";
+    }
 
 
 }
