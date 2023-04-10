@@ -7,10 +7,7 @@ import com.company.service.TaskService;
 import com.company.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/task")
@@ -91,6 +88,28 @@ public class TaskController {
 
 
         return "/task/archive";
+    }
+
+    @GetMapping("/employee/edit/{id}")
+    public String employeeEditTask(@PathVariable("id") Long id,Model model){
+
+        model.addAttribute("task", taskService.findById(id));
+       // model.addAttribute("projects",projectService.findAll());
+       // model.addAttribute("employees",userService.findEmployees());
+        model.addAttribute("statuses",Status.values());
+        model.addAttribute("tasks",taskService.findAllTasksByStatusIsNot(Status.COMPLETE));
+
+        return "/task/status-update";
+    }
+
+    @PostMapping("/employee/update/{id}")
+    public String employeeUpdateTask(@ModelAttribute("task") TaskDTO task, Model model){
+
+        model.addAttribute("statuses",Status.values());
+        model.addAttribute("tasks", taskService.findAllTasksByStatusIsNot(Status.COMPLETE));
+        taskService.updateStatus(task);
+
+        return "redirect:/task/employee/pending-tasks";
     }
 
 
